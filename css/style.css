@@ -1,11 +1,13 @@
-@keyframes fade_background_to_white {
+/*@keyframes fade_background_to_white {
     from {background-color: black;}
     to {background-color: white;}
-}
+}*/
 
 body {
     background-color: black;
-    font-family: 'Roboto';   
+    font-family: 'Roboto';
+    margin: 0;
+  padding: 0;   
 }
 
 .page_container {
@@ -19,19 +21,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
     font-family: 'Roboto';
-    transform: translate(50px);
 }
 
-.page0.fade-in {
-    /*animation-name: fade_background_to_white;
-    animation-delay: 4s;
-    animation-duration: 2s;
-    animation-fill-mode:forwards;*/
-    background-color: white;
-    transform: translate(0px);
-}
+/*.page0.fade-in {
+    
+}*/
 
 #page0_title {
     font-size: 200px;
