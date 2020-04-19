@@ -1,5 +1,5 @@
 const components = [
-    "test"
+    "header"
 ];
 
 export default function defineComponents() {

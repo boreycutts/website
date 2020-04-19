@@ -101,6 +101,10 @@ input, select {
   vertical-align: middle;
 }
 
+h1 {
+  font-size: xx-large;
+}
+
 /*  FLEX.css  */
 /*  DECLARATION  ---------------------------------------------------------------
 /*  FLEX CONTAINER ( SET )
@@ -394,5 +398,17 @@ input, select {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+
+.header__content {
+  width: 50vw;
+  margin: auto;
+  padding: 20px;
+}
+
+body {
+  background-color: #3a3a3a;
+  color: white;
+  font-family: 'Ubuntu monospace', monospace;
 }
 /*# sourceMappingURL=main.css.map */
