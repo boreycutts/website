@@ -1,0 +1,27 @@
+.animation {
+    &--caret {
+        animation: blink-caret .75s step-end infinite;
+    }
+    @keyframes blink-caret {
+        from, to { background-color: transparent }
+        50% { background-color: $primary; }
+    }
+
+    &--fade-in {
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        &-delay {
+            @extend .animation--fade-in;
+            animation-delay: 1s;
+        }
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+}

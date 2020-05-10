@@ -1,7 +1,16 @@
+@import "abstracts/variables";
+
+@import "base/animations";
 @import "base/resets";
 @import "base/typography";
 
+@import "components/flip-clock";
+
+@import "layout/content"; 
 @import "layout/grid"; 
 @import "layout/header"; 
+@import "layout/parallax"; 
+
+@import "pages/about";
 
 @import "themes/theme"; 

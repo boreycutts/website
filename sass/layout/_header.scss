@@ -1,4 +1,10 @@
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    width: 100vw;
+    background-color: $primary;
+    box-shadow: 0px 3px 10px black;
     &__content {
         width: 50vw;
         margin: auto;

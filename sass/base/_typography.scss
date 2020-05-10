@@ -1,3 +1,15 @@
+html * {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 h1 {
     font-size: xx-large;
+    font-weight: lighter;
+}
+
+a {
+    &:link, &:visited, a:link:active, a:visited:active {
+        color: $secondary;
+        text-decoration: none;
+    }
 }

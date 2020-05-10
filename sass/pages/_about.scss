@@ -1,0 +1,23 @@
+.about {
+    &__image {
+        width: 100%;
+        min-height: 100vh; 
+        background-image: url("../images/homepage.jpg");
+        background-attachment: fixed;
+        background-position: center 55px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__heading-container {
+        animation-delay: 1s;
+        position: absolute;
+        padding-top: 10%;
+        padding-left: 10%;
+        top: 0;
+    }
+
+    &__heading-text {
+        color: $primary;
+    }
+}
