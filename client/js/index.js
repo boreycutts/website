@@ -20,3 +20,7 @@ function typeWriter() {
 setTimeout(typeWriter, 2000);
 
 console.clear();
+
+function test() {
+    console.log('hello')
+}
