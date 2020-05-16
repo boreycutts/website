@@ -13,3 +13,12 @@ a {
         text-decoration: none;
     }
 }
+
+.text {
+    &--lighter {
+        font-weight: lighter;
+    }
+    &--bold {
+        font-weight: bold;
+    }
+}

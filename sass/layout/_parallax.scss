@@ -41,13 +41,18 @@
     perspective: 2px;
 }
 
-.section {
-    position: relative;
-    height: 100vh;
-}
+// .section {
+//     position: relative;
+//     height: 100vh;
+// }
 
 .static {
     background-color: $primary;
+}
+
+.parallax {
+    position: relative;
+    height: 100vh;
 }
 
 .parallax::after {

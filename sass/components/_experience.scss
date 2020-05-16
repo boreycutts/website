@@ -1,38 +1,45 @@
 .experience {
     &__container {
-        overflow: hidden;
-        transition: max-height 1s ease-out;
-        cursor: pointer;
+        transition: height 500ms ease;
 
         &--open {
             @extend .experience__container;
-            max-height: 80vh;
+            height: 75vh;
         }
         &--closed {
             @extend .experience__container;
-            max-height: 60px;
+            height: 60px;
         }
     }
 
     &__header {
-        padding: 20px 0;
-        transition: background-color 500ms ease-out;
+        height: 60px;
+
+        transition: background-color 500ms ease;
+        cursor: pointer;
 
         &:hover {
             background-color: $primary-highlight;
-            transition: background-color 500ms ease-out;
+            transition: background-color 500ms ease;
         }
+    }
+
+    &__header-title {
+        margin: auto 0;
+        // height: fit-content
     }
 
     &__content {
         opacity: 1;
         top: 0;
-        transition: opacity 1s ease-out, top 1s ease-out;
+        overflow: scroll;
+        transition: opacity 500ms ease, top 500ms ease;
 
         &--hidden {
+            @extend .experience__content;
             opacity: 0;
             top: 10px;
-            transition: opacity 1s ease-out, top 1s ease-out;
+            transition: opacity 500ms ease, top 500ms ease;
         }
     }
 }

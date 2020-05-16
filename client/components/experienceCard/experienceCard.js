@@ -1,15 +1,26 @@
 import WebComponent from '/components/webComponent.js';
 
 export default class ExperienceCard extends WebComponent {
+    constructor() {
+        super();
+    }
 
     toggleCard() {
         const container = super.root.querySelector('#container');
         const content = super.root.querySelector('#content');
 
-        container.className = container.className === 'experience__container--closed' ? 
-        'experience__container--open' : 'experience__container--closed';
+        if(container.classList.contains('experience__container--closed')) {
+            container.classList.remove('experience__container--closed');
+            container.classList.add('experience__container--open');
 
-        content.className = content.className === 'experience__content--hidden' ? 
-        'experience__content' : 'experience__content--hidden';
+            content.classList.remove('experience__content--hidden');
+            content.classList.add('experience__content');
+        } else {
+            container.classList.remove('experience__container--open');
+            container.classList.add('experience__container--closed');
+
+            content.classList.remove('experience__content');
+            content.classList.add('experience__content--hidden');
+        }
     }
 }

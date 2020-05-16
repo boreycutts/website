@@ -1,7 +1,9 @@
-import defineComponents from "/components/components.js";
+import { defineComponents } from "/components/webComponent.js";
 const components = [
     "header",
     "experienceCard",
+    "sectionAbout",
+    "sectionExperience",
 ];
 defineComponents(components);
 
@@ -20,7 +22,3 @@ function typeWriter() {
 setTimeout(typeWriter, 2000);
 
 console.clear();
-
-function test() {
-    console.log('hello')
-}
