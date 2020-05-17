@@ -1,26 +1,14 @@
-<section id="experience" class="static">
+<section id="experience" class="static animation--scroll-fade-out">
     <div class="content">
         <h1>Experience</h1>
-        <x-experience-card 
-            company="Acumen Solutions" 
-            title="Software Engineer"
-            date-range="09/19 - Present"
-            content-list={this.acumen.contentList}>
-        </x-experience-card>
-        <hr>
-        <x-experience-card 
-            company="Automated Packaging Systems" 
-            title="Software Engineer Co-op"
-            date-range="08/17 - 08/18 (2 Semesters)"
-            content-list={this.contentList}>
-        </x-experience-card>
-        <hr>
-        <x-experience-card 
-            company="Regal Beloit" 
-            title="Electronics Engineer Co-op"
-            date-range="08/15 - 04/17 (3 Semesters)"
-            content-list={this.contentList}>
-        </x-experience-card>
-        <hr>
+        {(for : experience : this.experienceList) (
+            <x-experience-card
+                company=[experience.company]
+                title=[experience.title]
+                date-range=[experience.dateRange]
+                content-list=[experience.contentList]>
+            </x-experience-card>
+            <hr>
+        )}
     </div>
 </section>

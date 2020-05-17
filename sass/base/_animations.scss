@@ -24,4 +24,16 @@
             opacity:1;
         }
     }
+
+    &--scroll-fade-out {
+        position: relative;
+        top: 50px;
+        opacity: 0;
+    }
+    &--scroll-fade-in {
+        position: relative;
+        top: 0;
+        opacity: 1;
+        transition: all 500ms ease;
+    }
 }

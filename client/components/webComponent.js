@@ -16,6 +16,10 @@ export default class WebComponent extends HTMLElement {
         this.component = name.charAt(0).toLowerCase() + name.slice(1);
     }
 
+    #removeMarkupComments = innerHTML => {
+        return innerHTML.replace(/<\!--.*?-->/g, "");
+    }
+
     #parseMarkupAttributes = innerHTML => {
         let newHTML = innerHTML;
         const expressions = innerHTML.match(/={([^}]+)}/g);
@@ -43,31 +47,66 @@ export default class WebComponent extends HTMLElement {
             newHTML = newHTML.replace(/={([^}]+)}/, replaceString);
         }
 
-        this.innerHTML = newHTML;
+        return newHTML;
     }
 
     #parseMarkupForLoops = innerHTML => {
         let newHTML = innerHTML;
         const experssions = innerHTML.match(/{\(for([^}]+)}/g);
         for(const e in experssions) {
-            const expression = experssions[e].replace(/\s/g, '').match(/\(([^)]+)\)/g);
-            const forExp = removeFirstAndLastChar(expression[0]).split(':');
+            const expression = experssions[e].match(/\(([^)]+)\)/g);
+            const forExp = removeFirstAndLastChar(expression[0].replace(/\s/g, '')).split(':');
             const markup = removeFirstAndLastChar(expression[1]);
 
             const key = forExp[1];
-            const list = JSON.parse(this.getAttribute(camelToSnake(forExp[2])));
-            
+            let list;
+            if(forExp[2].includes('this.')) {
+                const field = forExp[2].replace('this.', '');
+                list = this[field];
+            } else {
+                list = JSON.parse(this.getAttribute(camelToSnake(forExp[2])).replace(/'/g, '"'));
+            }
+
             let replaceString = '';
             for(const i in list) {
                 const item = list[i];
-                const newMarkup = markup.replace(/\[([^]+)\]/g, item);
+                const placeholders = markup.match(/\[(.*?)\]/g);
+                let newMarkup = markup;
+
+                for(const p in placeholders) {
+                    const placeholder = removeFirstAndLastChar(placeholders[p]);
+
+                    if(placeholder.includes('.')) {
+                        let value = item;
+                        const fields = placeholder.split('.');
+                        for(const f in fields) {
+                            const field = fields[f];
+                            if(field === key) {
+                                continue;
+                            } else {
+                                value = value[field];
+                            }
+                        }
+                        if(value === Object(value)) {
+                            newMarkup = newMarkup.replace(/\[(.*?)\]/, '"' + JSON.stringify(value).replace(/"/g, '\'') + '"');
+                        } else {
+                            newMarkup = newMarkup.replace(/\[(.*?)\]/, '"' + value + '"');
+                        }
+                    } else {
+                        if(item === Object(item)) {
+                            newMarkup = newMarkup.replace(/\[(.*?)\]/, JSON.stringify(item));
+                        } else {
+                            newMarkup = newMarkup.replace(/\[(.*?)\]/, item);
+                        }
+                    }
+                }
                 replaceString += newMarkup;
             }
 
             newHTML = newHTML.replace(/{\(for([^}]+)}/g, replaceString);
         }
 
-        this.innerHTML = newHTML;
+        return newHTML;
     }
 
     #parseMarkupVariables = innerHTML => {
@@ -89,7 +128,7 @@ export default class WebComponent extends HTMLElement {
             newHTML = newHTML.replace(/{([^}]+)}/, replaceString);
         }
 
-        this.innerHTML = newHTML;
+        return newHTML;
     }
 
     #parseMarkupOnClickHandlers = () => {
@@ -106,9 +145,12 @@ export default class WebComponent extends HTMLElement {
             .then(result => {
                 result.text()
                     .then(innerHTML => {
-                        this.#parseMarkupAttributes(innerHTML);
-                        this.#parseMarkupForLoops(this.innerHTML);
-                        this.#parseMarkupVariables(this.innerHTML);
+                        let newHTML = innerHTML;
+                        newHTML = this.#removeMarkupComments(newHTML);
+                        newHTML = this.#parseMarkupForLoops(newHTML);
+                        newHTML = this.#parseMarkupAttributes(newHTML);
+                        newHTML = this.#parseMarkupVariables(newHTML);
+                        this.innerHTML = newHTML;
                         this.#parseMarkupOnClickHandlers();
                     }) 
             })

@@ -1,10 +1,6 @@
 import WebComponent from '/components/webComponent.js';
 
 export default class ExperienceCard extends WebComponent {
-    constructor() {
-        super();
-    }
-
     toggleCard() {
         const container = super.root.querySelector('#container');
         const content = super.root.querySelector('#content');

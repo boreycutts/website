@@ -1,24 +1,26 @@
-import { defineComponents } from "/components/webComponent.js";
+import { defineComponents } from '/components/webComponent.js';
 const components = [
-    "header",
-    "experienceCard",
-    "sectionAbout",
-    "sectionExperience",
+    'header',
+    'experienceCard',
+    'sectionAbout',
+    'sectionExperience',
+    'sectionProjects'
 ];
 defineComponents(components);
 
-var i = 0;
-var txt = 'Hello world!';
-var speed = 100;
-
-function typeWriter() {
-    if (i < txt.length) {
-        document.getElementById("test").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
+document.getElementsByTagName('main')[0].addEventListener('scroll', (event) => {
+    const viewHeight = event.target.clientHeight;
+    const offset = 500;
+    const elements = Array.from(document.getElementsByClassName('animation--scroll-fade-out'));
+    for(const e in elements) {
+        const element = elements[e];
+        const bounding = element.getBoundingClientRect();
+        const offset = window.innerHeight * 0.5;
+        if(bounding.y <= offset) {
+            element.classList.remove('animation--scroll-fade-out');
+            element.classList.add('animation--scroll-fade-in');
+        }
     }
-}
-
-setTimeout(typeWriter, 2000);
+})
 
 console.clear();
