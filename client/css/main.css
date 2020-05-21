@@ -237,8 +237,76 @@ a:link, a:visited, a a:link:active, a a:visited:active {
   transition: opacity 500ms ease, bottom 500ms ease;
 }
 
+.projects__container {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.project__container, .project__container--closed, .project__container--open {
+  position: relative;
+  margin: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  bottom: 0;
+  -webkit-transition: background-color 250ms ease,  bottom 250ms ease,  width 500ms ease,  height 500ms ease;
+  transition: background-color 250ms ease,  bottom 250ms ease,  width 500ms ease,  height 500ms ease;
+}
+
+.project__container--closed {
+  width: 250px;
+  height: 250px;
+}
+
+.project__container--closed:hover {
+  background-color: #555555;
+  bottom: 10px;
+  cursor: pointer;
+}
+
+.project__container--open {
+  width: 75vw;
+  height: 90vh;
+}
+
+.project__name {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.project__content, .project__content--closed, .project__content--open {
+  width: 90%;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.project__content--closed {
+  height: 0;
+  overflow: hidden;
+}
+
+.project__content--open {
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.project__left-content {
+  max-width: 100%;
+}
+
+.project__description {
+  padding-bottom: 10px;
+}
+
+.project__tool {
+  padding: 5px;
+  margin-right: 5px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
 .section {
-  padding: 25vh 0;
+  padding: 10vh 0;
   background-color: #3a3a3a;
 }
 
@@ -307,6 +375,20 @@ a:link, a:visited, a a:link:active, a a:visited:active {
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;
   flex-direction: row;
+}
+
+.flex--column-reverse {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+.flex--row-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
 /*  JUSTIFICATION (Main axis)   ------------------------------------------------
@@ -514,6 +596,13 @@ a:link, a:visited, a a:link:active, a a:visited:active {
 .flex--wrap {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) {
+  .flex--wrap-small {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 
 /*

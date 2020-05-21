@@ -2,6 +2,7 @@ import { defineComponents } from '/components/webComponent.js';
 const components = [
     'header',
     'experienceCard',
+    'projectCard',
     'sectionAbout',
     'sectionExperience',
     'sectionProjects'

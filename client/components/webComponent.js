@@ -64,6 +64,7 @@ export default class WebComponent extends HTMLElement {
                 const field = forExp[2].replace('this.', '');
                 list = this[field];
             } else {
+                console.log(this.getAttribute(camelToSnake(forExp[2])))
                 list = JSON.parse(this.getAttribute(camelToSnake(forExp[2])).replace(/'/g, '"'));
             }
 

@@ -1,0 +1,87 @@
+.projects {
+    &__container {
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
+
+.project {
+    &__container {
+        position: relative;
+        margin: 10px;
+        border: 2px solid $secondary;
+        border-radius: 10px;
+        bottom: 0;
+        transition: 
+            background-color 250ms ease, 
+            bottom 250ms ease, 
+            width 500ms ease, 
+            height 500ms ease;
+
+        &--closed {
+            @extend .project__container;
+            // position: relative;
+            width: 250px;
+            height: 250px;
+            // margin: 10px;
+            // border: 2px solid $secondary;
+            // border-radius: 10px;
+            // bottom: 0;
+            // transition: 
+            //     background-color 250ms ease, 
+            //     bottom 250ms ease, 
+            //     width 500ms ease, 
+            //     height 500ms ease;
+            
+            &:hover {
+                background-color: $primary-highlight;
+                bottom: 10px;
+                cursor: pointer;
+            }
+        }
+
+        &--open {
+            @extend .project__container;
+            width: 75vw;
+            height: 90vh;
+        }
+    }
+
+    &__name {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    &__content {
+        width: 90%;
+        transition: all 500ms ease;
+        
+        &--closed {
+            @extend .project__content;
+            height: 0;
+            overflow: hidden;
+        }
+
+        &--open {
+            @extend .project__content;
+            height: 90%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    }
+
+    &__left-content {
+        max-width: 100%;
+    }
+
+    &__description {
+        padding-bottom: 10px;
+    }
+
+    &__tool {
+        padding: 5px;
+        margin-right: 5px;
+        border: 2px solid $secondary;
+        border-radius: 20px;
+    }
+}

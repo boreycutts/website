@@ -1,0 +1,22 @@
+<div onclick="expandCard" class="project__container--closed flex-set flex--column flex--content-center flex--align-items-center">
+    <div class="project__name">
+        {name}
+    </div>
+    <div class="project__content--closed flex-set flex--row-reverse flex--wrap-small flex--content-center">
+        <div class="project__image">
+            <!-- <iframe src='https://gfycat.com/ifr/fatgraygreatargus' frameborder='0' scrolling='no' allowfullscreen width='300' height='600'></iframe> -->
+        </div>
+        <div class="project__left-content flex-set flex--column flex--content-between">
+            <p class="project__description">
+                {description}
+            </p>
+            <div class="flex-set flex--wrap">
+                {(for : tool : tools) (
+                    <div class="project__tool">
+                        [tool]
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+</div>
