@@ -64,7 +64,6 @@ export default class WebComponent extends HTMLElement {
                 const field = forExp[2].replace('this.', '');
                 list = this[field];
             } else {
-                console.log(this.getAttribute(camelToSnake(forExp[2])))
                 list = JSON.parse(this.getAttribute(camelToSnake(forExp[2])).replace(/'/g, '"'));
             }
 
@@ -132,11 +131,15 @@ export default class WebComponent extends HTMLElement {
         return newHTML;
     }
 
-    #parseMarkupOnClickHandlers = () => {
+    #parseMarkupEventHandlers = () => {
         let elements = this.getElementsByTagName('*');
         for(const e in elements) {
-            if(elements[e].onclick) {
-                elements[e].onclick = this[elements[e].getAttribute('onclick')];
+            const attributes = elements[e].attributes;
+            if(attributes) {
+                const listeners = Array.from(attributes).filter(attribute => { return attribute.name.substr(0,2) === 'on' });
+                for(const l in listeners) {
+                    elements[e][listeners[l].name] = this[listeners[l].nodeValue];
+                }
             }
         }
     }
@@ -152,7 +155,7 @@ export default class WebComponent extends HTMLElement {
                         newHTML = this.#parseMarkupAttributes(newHTML);
                         newHTML = this.#parseMarkupVariables(newHTML);
                         this.innerHTML = newHTML;
-                        this.#parseMarkupOnClickHandlers();
+                        this.#parseMarkupEventHandlers();
                     }) 
             })
     }

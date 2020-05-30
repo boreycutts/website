@@ -1,0 +1,19 @@
+<section id="skills" class="static animation--scroll-fade-out">
+    <div class="content">
+        <h1>Skills</h1>
+        <p>
+            I've worked with a lot of different tools throughout my acedemic and professional career.
+            If you're looking for something specific use the search bar and tags below to see if I've worked with it.
+        </p>
+        <div class="skills__container flex-set flex--wrap">
+            {(for : skill : this.skillList) (
+                <x-skill-card
+                    name=[skill.name]
+                    logo=[skill.logo]
+                    time=[skill.time]
+                    level=[skill.level]>
+                </x-skill-card>
+            )}
+        </div>
+    </div>
+</section>

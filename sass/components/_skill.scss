@@ -1,0 +1,15 @@
+.skill {
+    &__container {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        border: 2px solid $secondary;
+        margin: 10px;
+        transition: all 500ms ease;
+
+        &:hover {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
