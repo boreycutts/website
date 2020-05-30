@@ -75,7 +75,7 @@ Author: Richard Clark - http://richclarkdesign.com
 Twitter: @rich_clark
 */
 html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+p, blockquote, pre,
 abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, samp,
 small, strong, sub, sup, var,
@@ -95,6 +95,15 @@ time, mark, audio, video {
   background: transparent;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
 body {
   line-height: 1;
 }
@@ -106,6 +115,7 @@ footer, header, hgroup, menu, nav, section {
 
 nav ul {
   list-style: none;
+  margin: 0;
 }
 
 blockquote, q {
@@ -183,6 +193,14 @@ a:link, a:visited, a a:link:active, a a:visited:active {
   text-decoration: none;
 }
 
+p {
+  line-height: 1.5em;
+}
+
+li {
+  line-height: 1.5em;
+}
+
 .text--lighter {
   font-weight: lighter;
 }
@@ -197,7 +215,7 @@ a:link, a:visited, a a:link:active, a a:visited:active {
 }
 
 .experience__container--open {
-  height: 30vh;
+  height: 50vh;
 }
 
 .experience__container--closed {
@@ -303,6 +321,8 @@ a:link, a:visited, a a:link:active, a a:visited:active {
   margin-right: 5px;
   border: 2px solid white;
   border-radius: 20px;
+  min-width: 50px;
+  text-align: center;
 }
 
 .section {

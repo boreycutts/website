@@ -5,7 +5,8 @@ const components = [
     'projectCard',
     'sectionAbout',
     'sectionExperience',
-    'sectionProjects'
+    'sectionProjects',
+    'sectionSkills',
 ];
 defineComponents(components);
 

@@ -1,9 +1,11 @@
 <div id="container" class="experience__container--closed flex-set flex--column">
     <div class="experience__header flex-set flex--content-between" onclick="toggleCard">
-        <p class="experience__header-title text--lighter">{company} ({title})</p>
+        <p class="experience__header-title text--lighter">{company}</p>
         <p class="experience__header-title">{dateRange}</p>
     </div>
     <div id="content" class="experience__content--hidden flexed-item">
+        <p>Position: {title}</p>
+        <p>Responsibilities:</p>
         <ul>
             {(for : content : contentList) (
                 <li>[content]</li>
