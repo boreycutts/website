@@ -1,3 +1,10 @@
+.skills {
+    &__container {
+        width: 100%;
+        transition: all 500ms ease;
+    }
+}
+
 .skill {
     &__container {
         width: 100px;
@@ -10,6 +17,7 @@
         &:hover {
             width: 150px;
             height: 150px;
+            background-color: $primary-highlight;
         }
     }
 }

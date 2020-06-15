@@ -179,6 +179,13 @@ input, select {
   vertical-align: middle;
 }
 
+html, body {
+  -webkit-text-size-adjust: auto;
+     -moz-text-size-adjust: auto;
+      -ms-text-size-adjust: auto;
+          text-size-adjust: auto;
+}
+
 html * {
   font-family: 'Courier New', Courier, monospace;
 }
@@ -330,6 +337,12 @@ li {
   background-color: #3a3a3a;
 }
 
+.skills__container {
+  width: 100%;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
 .skill__container {
   width: 100px;
   height: 100px;
@@ -343,6 +356,7 @@ li {
 .skill__container:hover {
   width: 150px;
   height: 150px;
+  background-color: #555555;
 }
 
 .content {
