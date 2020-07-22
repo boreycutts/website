@@ -262,6 +262,12 @@ li {
   transition: opacity 500ms ease, bottom 500ms ease;
 }
 
+.game {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
 .projects__container {
   width: 100%;
   overflow-x: scroll;
