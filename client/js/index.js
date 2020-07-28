@@ -1,5 +1,5 @@
 import { defineComponents } from '/components/webComponent.js';
-import { loop } from '../game/game.js';
+import { gameloop } from '../game/game.js';
 
 // const components = [
 //     'header',
@@ -28,4 +28,13 @@ import { loop } from '../game/game.js';
 //     }
 // });
 
-loop();
+let a = () => {};
+let b = console.log;
+
+addEventListener('keypress', event => {
+    if(event.keyCode === 99) {
+        console.log = console.log === b ? a : b;
+    }
+});
+
+gameloop();

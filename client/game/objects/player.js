@@ -1,9 +1,19 @@
 export const player = {
-    x: 20,
-    y: 20,
-    w: 50,
-    h: 50,
+    position: {
+        x: 20,
+        y: 20
+    },
+    width: 50,
+    height: 50,
     speed: 10,
+    acceleration: 1,
+    deadzone: 1,
+    buttons: {
+        up: false,
+        down: false,
+        left: false,
+        right: false
+    },
     xspeed: 0,
     yspeed: 0,
     
@@ -13,9 +23,9 @@ export const player = {
         ctx.lineCap = "round";
 
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y)
-        ctx.lineTo(this.x + this.w, this.y + this.h/2)
-        ctx.lineTo(this.x, this.y + this.h)
+        ctx.moveTo(this.position.x, this.position.y);
+        ctx.lineTo(this.position.x + this.width, this.position.y + this.height/2);
+        ctx.lineTo(this.position.x, this.position.y + this.height);
         ctx.stroke();
     },
 
@@ -24,47 +34,74 @@ export const player = {
     },
 
     handleMovement: function() {
-        if(this.x < 0) {
-            this.x = 0;
-        } else if (this.x > window.innerWidth - this.w) {
-            this.x = window.innerWidth - this.w
+        if(this.buttons.up) {
+            this.position.yspeed = this.position.yspeed > -this.speed ? this.position.yspeed - this.acceleration : -this.speed; 
+        } else if(this.buttons.down) {
+            this.position.yspeed = this.position.yspeed < this.speed ? this.position.yspeed + this.acceleration : this.speed;
         } else {
-            this.x += this.xspeed;
+            if(this.position.yspeed > 0 + this.deadzone) {
+                this.position.yspeed -= this.acceleration;
+            } else if(this.position.yspeed < 0 - this.deadzone) {
+                this.position.yspeed += this.acceleration;
+            } else {
+                this.position.yspeed = 0;
+            }
         }
 
-        if(this.y < 0) {
-            this.y = 0;
-        } else if (this.y > window.innerHeight - this.h) {
-            this.y = window.innerHeight - this.h
+        if(this.buttons.left && !this.buttons.right) {
+            this.position.xspeed = this.position.xspeed > -this.speed ? this.position.xspeed - this.acceleration : -this.speed;
+        } else if(this.buttons.right && !this.buttons.left) {
+            this.position.xspeed = this.position.xspeed < this.speed ? this.position.xspeed + this.acceleration : this.speed;
         } else {
-            this.y += this.yspeed;
+            if(this.position.xspeed > 0 + this.deadzone) {
+                this.position.xspeed -= this.acceleration;
+            } else if(this.position.xspeed < 0 - this.deadzone) {
+                this.position.xspeed += this.acceleration;
+            } else {
+                this.position.xspeed = 0;
+            }
+        }
+
+        if(this.position.x < 0) {
+            this.position.x = 0;
+        } else if (this.position.x > window.innerWidth - this.width) {
+            this.position.x = window.innerWidth - this.width
+        } else {
+            this.position.x += this.position.xspeed;
+        }
+
+        if(this.position.y < 0) {
+            this.position.y = 0;
+        } else if (this.position.y > window.innerHeight - this.height) {
+            this.position.y = window.innerHeight - this.height
+        } else {
+            this.position.y += this.position.yspeed;
         }
     },
 
     move: function(keycode) {
-        console.log('DOWN: ' + keycode)
         switch(keycode) {
             case 87 :
             case 38 : {
-                this.yspeed = -this.speed;
+                this.buttons.up = true;
                 break;
             }
             
             case 83 :
             case 40 : {
-                this.yspeed = this.speed;
+                this.buttons.down = true;
                 break;
             }
 
             case 65 :
             case 37 : {
-                this.xspeed = -this.speed;
+                this.buttons.left = true;
                 break;
             }
 
             case 68 :
             case 39 : {
-                this.xspeed = this.speed;
+                this.buttons.right = true;
                 break;
             }
 
@@ -74,27 +111,26 @@ export const player = {
     },
 
     stop: function(keycode) {
-        console.log('UP: ' + keycode)
         switch(keycode) {
             case 87 :
             case 38 : {
-                this.yspeed = this.yspeed === -this.speed ? 0 : this.yspeed;
+                this.buttons.up = false;
                 break;
             }
             case 83 :
             case 40 : {
-                this.yspeed = this.yspeed === this.speed ? 0 : this.yspeed;
+                this.buttons.down = false;
                 break;
             }
 
             case 65 :
             case 37 : {
-                this.xspeed = this.xspeed === -this.speed ? 0 : this.xspeed;
+                this.buttons.left = false;
                 break;
             }
             case 68 :
             case 39 : {
-                this.xspeed = this.xspeed === this.speed ? 0 : this.xspeed;
+                this.buttons.right = false;
                 break;
             }
 
