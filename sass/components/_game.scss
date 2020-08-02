@@ -1,5 +1,18 @@
 .game {
     width: 100vw;
     height: 100vh;
-    position: relative;
+    position: absolute;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: all 500ms ease;
+
+
+    &__hidden {
+        @extend .game;
+        opacity: 0;
+        top: 100;
+        z-index: -1;
+    }
 }

@@ -1,4 +1,4 @@
-const BULLET_DELAY = 10;
+const BULLET_DELAY = 20;
 
 export const bullets = {
     active: [],
@@ -10,9 +10,9 @@ export const bullets = {
 
     draw: function(ctx) {
         for(const i in this.active) {
-            ctx.strokeStyle = "#ffffff";
+            ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = 2;
-            ctx.lineCap = "round";
+            ctx.lineCap = 'round';
 
             ctx.beginPath();
             ctx.moveTo(this.active[i].position.x, this.active[i].position.y);
@@ -32,17 +32,17 @@ export const bullets = {
             }
         }
 
-        if(this.delayCount >= BULLET_DELAY) {
+        if(this.delayCount >= BULLET_DELAY && this.isFiring) {
             this.delayCount = 0;
 
-            if(this.isFiring) {
+            // if(this.isFiring) {
                 this.active.push({
                     position: {
                         x: this.playerInfo.position.x + this.playerInfo.width + 10,
                         y: this.playerInfo.position.y + this.playerInfo.height/2
                     },
                 });
-            }
+            // }
         }
     },
 
@@ -52,6 +52,6 @@ export const bullets = {
 
     stopFire: function() {
         this.isFiring = false;
-        this.delayCount = 0;
+        // this.delayCount = 0;
     }
 }
