@@ -7,7 +7,7 @@
   - [x] Better player movement
   - [x] Implement bullets
   - [x] Add Enemies
-  - [ ] Player collision detection
+  - [x] Player collision detection
   - [ ] Power up
   - [ ] Score
   - [ ] Leaderboard
